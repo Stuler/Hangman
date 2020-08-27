@@ -1,9 +1,10 @@
 from random_word import RandomWords
 
 r = RandomWords()
-wrd = r.get_random_word(minLength=5, maxLength=10)
+#wrd = r.get_random_word(minLength=5, maxLength=10)
+wrd = "Alaska"
 wrd_lwr = wrd.lower()
-print (wrd)
+print (wrd) # helper
 
 msg = "*"*len(wrd)
 mod_mess = ""
