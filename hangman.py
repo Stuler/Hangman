@@ -14,9 +14,10 @@ choices_count = 6
 while choices_count >0:
     choice = input("Guess the letter: ")
     if choice in wrd_lwr:
-        print ("Letter is contained in the word.")
+        print (f"Letter '{choice}' is contained in the word.")
+    #    choice_pos = wrd_lwr.index(choice)
     else:
-        print ("Letter isn't contained in the word.")
+        print (f"Letter '{choice}' isn't contained in the word.")
     choices_count = choices_count-1
     for i in wrd_lwr:
         if i == choice:
