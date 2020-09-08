@@ -6,15 +6,11 @@ wrd = "Alaska"
 wrd_lwr = wrd.lower().strip()
 print (wrd) # helper
 
-msg = "*"*len(wrd)
-mod_mess = ""
-
 choices_count = 6
 choices_list = []
 unhid_word = []
 guessed_list = []
 init_word = ""
-
 
 while choices_count > 0:
     choice = input("Guess the letter: ")
@@ -35,10 +31,24 @@ while choices_count > 0:
     wrd_to_shw = guessed_list[-1][-len(wrd_lwr):]
     print(wrd_to_shw, "\n")
     print(f"{choices_count} guesses left!\n")
-    
 
-guess = input("Guess the word: ")
-if guess == wrd_lwr:
-    print("Right guess!")
-else:
-    print("Wrong guess! You loose!")
+    guess_prompt = input("Do you want to guess the word? y/n: \n")
+    if guess_prompt == "y":
+        guess = input("Guess the word: ")
+        if guess == wrd_lwr:
+            print("Right guess!")
+        else:
+            print("Wrong guess!")
+    elif guess_prompt == "n":
+        continue       
+    
+    repeat_prompt = input("Do you want to play again? y/n: \n")
+    if repeat_prompt == "y":
+        choices_count = 6
+        choices_list = []
+        guessed_list = []
+        unhid_word = []
+    else:
+        choices_count = 0
+
+# finish last chance guess
