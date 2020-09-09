@@ -1,10 +1,13 @@
 from random_word import RandomWords
 
-r = RandomWords()
-#wrd = r.get_random_word(minLength=5, maxLength=10)
-wrd = "Alaska"
-wrd_lwr = wrd.lower().strip()
-print (wrd) # helper
+def get_wrd():
+    r = RandomWords()
+    wrd = r.get_random_word(minLength=5, maxLength=10)
+    wrd_lwr = wrd.lower().strip()
+    return wrd_lwr
+
+wrd_lwr = get_wrd()
+print (wrd_lwr)
 
 choices_count = 6
 choices_list = []
@@ -31,24 +34,35 @@ while choices_count > 0:
     wrd_to_shw = guessed_list[-1][-len(wrd_lwr):]
     print(wrd_to_shw, "\n")
     print(f"{choices_count} guesses left!\n")
-
-    guess_prompt = input("Do you want to guess the word? y/n: \n")
-    if guess_prompt == "y":
-        guess = input("Guess the word: ")
-        if guess == wrd_lwr:
+    
+    if choices_count > 0:
+        guess_prompt = input("Do you want to guess the word? y/n: \n")
+        if guess_prompt == "y":
+            guess = input("Guess the word: ")
+            if guess == wrd_lwr:
+                print("Right guess!")
+            else:
+                print("Wrong guess!")
+        else:
+            continue      
+    else:
+        answer = input ("Guess the word: \n")
+        if answer == wrd_lwr:
             print("Right guess!")
         else:
-            print("Wrong guess!")
-    elif guess_prompt == "n":
-        continue       
+            print("Wrong guess! \n"
+            f"Correct word: {wrd_lwr} \n")
     
     repeat_prompt = input("Do you want to play again? y/n: \n")
     if repeat_prompt == "y":
+        wrd_lwr = get_wrd()
         choices_count = 6
         choices_list = []
         guessed_list = []
         unhid_word = []
     else:
+        print("Quitting the game!")
         choices_count = 0
 
-# finish last chance guess
+# add dificulties
+# clean the code
