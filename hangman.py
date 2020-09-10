@@ -2,27 +2,41 @@ from random_word import RandomWords
 
 def get_wrd():
     r = RandomWords()
-    wrd = r.get_random_word(minLength=5, maxLength=10)
+    diff = input("Choose a difficulty: 1 - Easy, 2 - Moderate, 3 - Hard : \n")
+    if diff == "1":
+        wrd = r.get_random_word(minLength=3, maxLength=6)
+    elif diff == "2":
+        wrd = r.get_random_word(minLength=7, maxLength=10)
+    elif diff == "3":
+        wrd = r.get_random_word(minLength=11)
+    else:
+        diff = input("Wrong choice. Try again: (1, 2, 3): \n")
     wrd_lwr = wrd.lower().strip()
     return wrd_lwr
 
 wrd_lwr = get_wrd()
-print (wrd_lwr)
+#print (wrd_lwr)
 
 choices_count = 6
 choices_list = []
 unhid_word = []
 guessed_list = []
 init_word = ""
+choices_taken = []
 
 while choices_count > 0:
     choice = input("Guess the letter: ")
+    choices_taken.append(choice)
     if choice in wrd_lwr:
         print (f"Letter '{choice}' is contained in the word.\n")
         choices_list.append(choice)
+    elif choice in choices_taken:
+        print("Letter already guessed!")
+        continue
     else:
         print (f"Letter '{choice}' isn't contained in the word.\n")
         choices_count = choices_count-1
+
     for i in wrd_lwr:
         if i in choices_list:
             unhid_word.append(i)
@@ -63,6 +77,3 @@ while choices_count > 0:
     else:
         print("Quitting the game!")
         choices_count = 0
-
-# add dificulties
-# clean the code
